@@ -3,7 +3,7 @@
 Example: Testing HMAC Authentication
 
 This example demonstrates the HMAC authentication system and 
-fully discloses the encryption method.
+fully discloses the authentication method.
 """
 
 import time
