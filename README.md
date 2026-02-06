@@ -1,33 +1,12 @@
-# fmo-gen1-remote-tool（示范工程）
+# FMO-APRS-Remote-Control-Tool
 
-本仓库是一个“示范工程”，用于演示通过 APRS-IS 发送远程控制指令到设备的报文拼装、签名计算与 ACK 等待逻辑。
+本仓库是一个示范工程，用于演示通过 APRS-IS 发送远程控制指令到设备的报文拼装、签名计算与 ACK 等待逻辑。
 
 包含两份实现：
 - C# WinForms：`fmo-aprs-remote-tool/`（图形界面）
 - Python：`control.py`（命令行发送器）
 
-下文描述的是“本仓库当前实现的协议格式”（实现级协议说明），便于互操作与复现。
-
-## 1. 传输层与连接
-
-- 传输：TCP 连接到 APRS-IS
-- 默认服务器：`china.aprs2.net`
-- 默认端口：`14580`
-
-连接后首先发送登录行：
-
-```
-user <FROM_CALL>-<FROM_SSID> pass <PASSCODE> vers FMO-CTRL 0.1
-```
-
-说明：
-- `<PASSCODE>` 是 APRS-IS passcode（本工具 UI 校验为 5 位数字）。
-- C# 实现会尝试读取服务器的 `logresp`，若包含 `unverified` 则认为 PASSCODE 无效并停止发送。
-
-## 2. APRS 帧（APRS-IS 文本行）格式
-
 本工具发送的 APRS-IS 文本行（单行一帧）形如：
-
 ```
 <FROM_CALL>-<FROM_SSID>><DEVICE>,<PATH>::<ADDRESSEE_9>:<PAYLOAD>
 ```
@@ -75,7 +54,7 @@ CONTROL,<ACTION>,<T>,<C>,<SIG>
 
 ### 4.1 预共享密钥 SECRET
 
-- SECRET 为设备端与发送端共享的字符串。
+- SECRET 为设备端与发送端共享的字符串,在FMO菜单内可以看见。
 - 本示范工程（GUI）对 SECRET 的输入校验为：`^[A-Z0-9]{12}$`（12 位大写字母或数字）。
 - 实际签名计算时：
   - 密钥字节序列 `keyBytes = UTF-8(SECRET)`
@@ -118,3 +97,5 @@ msgRaw = FROM_CALL + FROM_SSID + TYPE + ACTION + T + C
 $$SIG = HEXUPPER( HMACSHA1(key, msg)[0..7] )$$
 
 其中 `HEXUPPER` 表示每个字节转 2 位十六进制并使用 `0-9A-F` 大写字母。
+
+欢迎大家根据这个工程，集成进自己的小程序，应用，乃至网站之类。
