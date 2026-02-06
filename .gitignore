@@ -1,0 +1,89 @@
+# .NET Framework .gitignore
+
+# 编译输出目录
+bin/
+obj/
+
+# Visual Studio 工作区设置
+.vs/
+
+# 用户特定文件
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015 缓存/选项目录
+.vscode/
+
+# NuGet 包
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# 构建结果
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio 缓文件
+*.cache
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# JustCode
+.JustCode
+
+# Visual Studio 代码分析结果目录
+Generated\ Code/
+
+# MSTest 测试结果
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NuGet 包文件夹
+**/packages/*
+
+# 测试结果
+TestResults/
+
+# Visual Studio 插件
+.vs/
+*.suo
+*.user
+
+# 构建缓存
+*.cache
+*.log
+
+# Visual Studio 临时文件
+*.aps
+*.ncb
+*.opendb
+*.pdb
+*.VC.db
+
+# Windows 系统文件
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# NuGet Symbol Packages
+*.snupkg
+
+# NuGet Package Manager
+*.nuget.props
+*.nuget.targets
+
+# 忽略配置文件中的敏感信息（如果有）
+*.config.user
